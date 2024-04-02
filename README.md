@@ -116,7 +116,7 @@ seu IDE.
 
 
 
-* Antes de excutar os scripts para criação do runner do gitlab é necessário criar uma conta no serviço. Caso já tenha, apenas faça o login. [GITLAB](https://gitlab.com/).
+* Antes de executar os scripts para criação do runner do gitlab é necessário criar uma conta no serviço. Caso já tenha, apenas faça o login. [GITLAB](https://gitlab.com/).
 * Para conseguir fazer os commits para o gitlab você irá precisar criar uma chave de conexão. Para tal siga os passos:
    * Vá ao terminal do Cloud9 e utilize o seguinte comando para criar a chave:
    ```shell
@@ -166,14 +166,14 @@ source ~/venv/bin/activate
 * De o nome de `projeto final` ao projeto. Marque como `Public` e desmarque a opção de inicializar com README. 
    ![](img/gitlab-3.png)
 * Clique em `Create project`
+
+AQUI **** ==========
+
+  
 * De volta ao Cloud9 você vai subir o código desse projeto final no gitlab. Para isso siga os comandos abaixo tomando o cuidado com os pontos onde precisa colocar suas informações
 ```bash
 git config --global user.name "SEU NOME"
 git config --global user.email "SEU EMAIL DO GITLAB"
-
-#Copia o código para outra pasta para que possa criar outro repo git
-cp -frv /home/ubuntu/environment/FIAP-CICD-DevSecOps/03-Ansible/01-provisionando-gitlab-runner/projeto-final/ ~/environment/
-
 cd /home/ubuntu/environment/projeto-final
 
 git init
@@ -212,7 +212,7 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u 'ubuntu' -i hosts  --extra-v
 * Se voltar a mesma página do gitlab onde pegou o token notará que agora tem um runner registrado.
 ![](img/gitlab-13.png)
 
-===
+------------------------------
 
 * Mude os arquivos para que os arquivos virem um módulo que recebe a quantidade de nós no load balancer:
   * Com base nos arquivos e pastas do exercício de Módulos, o [02-Modules](https://github.com/vamperst/FIAP-CICD-DevSecOps/tree/master/02-Terraform/demos/02-Modules), faça:
@@ -357,6 +357,7 @@ output "load_balancer_dns" {
 }
 ```
 
+-------------------------------------------
 
 * Os nomes das maquinas definadas dentro do modulo devem ser de acordo com o ambiente do workspace* Ex: nginx-workspace-002
 * O nome do ELB e do Securitygroup do módulo também devem conter o workspace
@@ -375,7 +376,6 @@ Exercício de 05-Workspaces (https://github.com/vamperst/FIAP-CICD-DevSecOps/tre
 * Rode o apply (`terraform apply -auto-approve`) com cada um dos ambiente e note que serão gerados arquivos diferentes para cada workspaces dentro da pasta 'modules'* Para trocar de ambiente utilize o comando `terraform workspace select NOMEDAWORKSPACE`.
 *  Se for no Bucket verá que foi criada uma estrutura de pastas para os workspaces que criou* E dentro das pastas prod e dev tem um arquivo 'workspaces' que é o estado do workspace em questão.
 * De volta ao terminal execute um comando `ls modules/file/*.txt`, vai ver para para cada apply que fez foi criado um arquivo para o workspace.
-* No workspace 'prod' execute o comando `terraform destroy -auto-approve`.
 * Verifique o arquivo txt do prod não esta mais na pasta mas o dev esta intacto.
 * Olhe no arquivo referente ao ambiente prod no bucket do S3, ao ler o mesmo irá notar que esta vazio, tamanho pequeno, mas não foi excluido* 
 
@@ -406,7 +406,10 @@ Exercício de 05-Workspaces (https://github.com/vamperst/FIAP-CICD-DevSecOps/tre
     ![countmod2](images/countmod2.png)
 * Dessa vez no [painel da AWS](https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#LoadBalancer:loadBalancerArn=terraform-example-elb;tab=targetInstances) foram 2 destruições de maquina e uma alteração no ELB
     ![service1](images/inservice1.png)
+
+
 * Execute o comando `terraform destroy -auto-approve`
+
 
 ------------------------
 
